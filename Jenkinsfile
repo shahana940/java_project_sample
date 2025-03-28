@@ -14,7 +14,7 @@ pipeline{
     stages{
         stage("build"){
             steps{
-                echo "this is build block $params.servers"
+                echo "this is build blddock $params.servers"
                 sh "mvn clean package -DskipTests"
             }
             
