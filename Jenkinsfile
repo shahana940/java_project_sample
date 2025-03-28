@@ -6,7 +6,7 @@ pipeline{
         maven "maven3"
     }
     parameters {
-        string defaultValue: 'production', name: 'server'
+        choice choices: ['production', 'development'], name: 'servers'
     }
     environment {
         userpass = "set46%^$fhj"
