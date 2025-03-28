@@ -6,7 +6,7 @@ pipeline{
         maven "maven3"
     }
     parameters {
-        string defaultValue: 'production', name: 'server'
+        choice choices: ['production', 'development'], name: 'servers'
     }
     environment {
         userpass = "set46%^$fhj"
@@ -14,7 +14,7 @@ pipeline{
     stages{
         stage("build"){
             steps{
-                echo "this is build block $params.server"
+                echo "this is build block $params.servers"
                 sh "mvn clean package -DskipTests"
             }
             
