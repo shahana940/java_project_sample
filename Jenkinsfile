@@ -14,7 +14,7 @@ pipeline{
     stages{
         stage("build"){
             steps{
-                echo "this is build blddx  ock $params.servers"
+                echo "this is build block $params.servers"
                 sh "mvn clean package -DskipTests"
             }
             
@@ -22,7 +22,7 @@ pipeline{
 
         stage("test"){
             steps{
-                echo "this is test block"
+                echo "this is test block $params.servers"
             }
             
         }
