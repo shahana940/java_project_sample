@@ -1,7 +1,4 @@
 # java-tomcat-maven-example
-new change2
-gcds
-scs
 sample change
 
 
