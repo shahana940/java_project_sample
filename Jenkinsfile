@@ -7,6 +7,7 @@ pipeline{
     }
     parameters {
         string defaultValue: 'qwertyyyyyy', name: 'value'
+        choice choices: ['prod', 'test'], name: 'choice'
     }
 
     stages{
@@ -23,7 +24,7 @@ pipeline{
         }
         stage('deploy'){
             steps{
-                echo "this is deploy stage"
+                echo "this is deploy stage $params.choice"
             }
         }
     }
