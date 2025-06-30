@@ -5,6 +5,10 @@ pipeline{
     tools{
         maven 'maven123'
     }
+    parameters {
+        string defaultValue: 'qwertyyyyyy', name: 'value'
+    }
+
     stages{
         stage('build'){
             steps{
@@ -14,7 +18,7 @@ pipeline{
 
         stage('test'){
             steps{
-                echo "this is test stage"
+                echo "this is test stage $params.value"
             }
         }
         stage('deploy'){
