@@ -9,10 +9,14 @@ pipeline{
         string defaultValue: 'qwertyyyyyy', name: 'value'
         choice choices: ['prod', 'test'], name: 'choice'
     }
+    options{
+        skipDefaultCheckout(true)
+    }
 
     stages{
         stage('build'){
             steps{
+                checkout scm
                 sh 'mvn clean package'
                 stash includes: 'target/*.war',name:'app_artifact'
             }
