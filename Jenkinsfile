@@ -41,6 +41,26 @@ pipeline{
                 echo "this is deploy stage $params.choice"
             }
         }
+        stage('parallel'){
+            parallel{
+                stage('test A'){
+                    steps{
+                        echo 'test A parallel'
+                    }
+                }
+                stage('test B'){
+                    steps{
+                        echo 'test A parallel'
+                    }
+                }
+                stage('test C'){
+                    steps{
+                        echo 'test A parallel'
+                    }
+                }              
+
+            }
+        }
     }
 }
 
