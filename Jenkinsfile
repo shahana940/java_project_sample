@@ -46,6 +46,9 @@ pipeline{
                 timeout(time:5,unit:'DAYS'){
                     input message:'approve deployment in production'
                     sh "echo hello > deployment"
+                    sh "docker stop tomcat||true&&docker rm tomcat||true"
+                    sh "docker run -d --name tomcat -p 80:8080 tomcat"
+                    sh "docker cp unstash/target/*.war tomcat:/usr/local/tomcat/webapps"
                 }
 
                 
