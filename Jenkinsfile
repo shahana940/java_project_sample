@@ -27,18 +27,28 @@ pipeline{
                 label 'node2'
             }
             steps{
-                sh 'rm -rf unstash && mkdir unstash'
-                dir('unstash/'){
-                    unstash 'app_artifact'
-
-                }
+                
                 echo "this is test stage $params.value"
                  
             }
         }
         stage('deploy'){
+            when{expression{params.choice=='prod'}}
+            agent{
+                label 'node2'
+            }
             steps{
                 echo "this is deploy stage $params.choice"
+                sh 'rm -rf unstash && mkdir unstash'
+                dir('unstash/'){
+                    unstash 'app_artifact'
+                }
+                timeout(time:5,unit:'DAYS'){
+                    input message:'approve deployment in production'
+                    sh "echo hello > deployment"
+                }
+
+                
             }
         }
         stage('parallel'){
