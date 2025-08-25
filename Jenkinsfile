@@ -31,9 +31,18 @@ pipeline{
         
        } 
        stage("deploy"){
-        steps{
-            echo "this is deploy stage"
-        }
+            parallel{
+               stage('testA'){
+                steps{
+                    echo "TESTA"
+                }
+               } 
+                stage('testB'){
+                    steps{
+                        echo "TESTB"
+                    }
+                }
+            }
         
        }
     }
