@@ -5,9 +5,13 @@ pipeline{
     tools{
         maven "maven123"
     }
+    options{
+        skipDefaultCheckout(true)
+    }
     stages{
        stage('build'){
         steps{
+            checkout scm
             echo "this is build stage"
             sh "mvn package"
         }
