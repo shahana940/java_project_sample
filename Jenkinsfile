@@ -14,6 +14,9 @@ pipeline{
         
        }
        stage("test"){
+        agent{
+            label "node2"
+        }
         steps{
             echo "this is test stage"
         }
