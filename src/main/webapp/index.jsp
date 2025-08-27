@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Hello World! jenkins pipeline</h2>
+<h2>Hello World! webhook check</h2>
 </body>
 </html>
