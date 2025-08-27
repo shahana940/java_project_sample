@@ -12,12 +12,7 @@ pipeline{
     }
 
     stages{
-        stage('git checkout'){
-            steps{
-                git branch: 'main',url: 'https://github.com/AmalkumarG/java_proj_sample.git'
-            }
-            
-        }
+
 
         stage('build app'){
             steps{
