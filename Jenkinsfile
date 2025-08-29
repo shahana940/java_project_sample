@@ -24,6 +24,10 @@ pipeline{
                 echo 'this is test'
             }
         }
+
+        stage("hello")[
+            
+        ]
        
       
     
