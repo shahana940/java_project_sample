@@ -18,12 +18,16 @@ pipeline{
                 echo "this is $params.value"
                 sh "mvn clean package"
 
-                stash name: package,includes:"target/*.war"
+                stash name:"build",includes:"target/*.war"
             }
         }
         stage('test'){
+            agent{
+                label "node2"
+            }
             steps{
                 echo 'this is test'
+                unstash "build"
             }
         }
 
