@@ -27,6 +27,7 @@ pipeline{
             agent{
                 label "node2"
             }
+            when{expression{params.servers=="prod"}}
             steps{
                 echo 'this is test'
                 sh "mkdir unstash"
