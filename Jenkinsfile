@@ -17,6 +17,8 @@ pipeline{
                 checkout scm
                 echo "this is $params.value"
                 sh "mvn clean package"
+
+                stash name: package,includes:"target/*.war"
             }
         }
         stage('test'){
