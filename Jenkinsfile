@@ -29,11 +29,15 @@ pipeline{
             }
             when{expression{params.servers=="prod"}}
             steps{
-                echo 'this is test'
-                sh "mkdir unstash"
-                dir("unstash"){
-                    unstash "build"
+                timeout(time:5,unit:'DAYS'){
+                        input message:"approve deployment in production server"
+                        echo 'this is test'
+                        sh "mkdir unstash"
+                        dir("unstash"){
+                            unstash "build"
+                        }
                 }
+             
                 
             }
         }
