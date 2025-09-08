@@ -17,8 +17,10 @@ pipeline{
                 checkout scm
                 echo "this is $params.value"
                 sh "mvn clean package"
-
-                stash name:"build",includes:"target/*.war"
+                dir('target'){
+                    stash name:"build",includes:"*.war"
+                }
+                
             }
         }
         stage('test'){
@@ -27,7 +29,11 @@ pipeline{
             }
             steps{
                 echo 'this is test'
-                unstash "build"
+                sh "mkdir unstash"
+                dir("unstash"){
+                    unstash "build"
+                }
+                
             }
         }
 
