@@ -14,32 +14,25 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                checkout scm
-                echo "this is build"
-                }
+                echo "this is build step"
+                
                 
             }
         }
         stage('test'){
-            agent{
-                label "node2"
-            }
-            when{expression{params.servers=="prod"}}
             steps{
-                timeout(time:5,unit:'DAYS'){
-                        input message:"approve deployment in production server"
-                        echo 'this is test'
-                        sh "mkdir unstash"
-                        dir("unstash"){
-                            unstash "build"
-                        }
+                echo "this is test stage"
                 }
              
                 
             }
         }
 
-   
+        stage('deploy') {
+            steps{
+                echo "this is deploy stage"
+            }
+        }  
        
       
     
