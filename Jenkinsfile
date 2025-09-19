@@ -15,10 +15,7 @@ pipeline{
         stage('build'){
             steps{
                 checkout scm
-                echo "this is $params.value"
-                sh "mvn clean package"
-                dir('target'){
-                    stash name:"build",includes:"*.war"
+                echo "this is build"
                 }
                 
             }
