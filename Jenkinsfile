@@ -6,7 +6,7 @@ pipeline{
         maven 'maven123'
     }
     parameters {
-        string default value:'qwertyyyyy', name:'value'
+        string  value:'qwertyyyyy', name:'value'
     }
     stages{
         stage('build'){
