@@ -7,6 +7,8 @@ pipeline{
     }
     parameters {
         string(name: 'value', defaultValue: 'qwertyyyyy', description: 'Enter a value')
+        choice choices: ['prod', 'test'], name: 'choice'
+
 
     }
     stages{
