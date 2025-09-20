@@ -6,10 +6,7 @@ pipeline{
         maven 'maven123'
     }
     parameters {
-        choice choices: ['prod', 'dev'], name: 'servers'
-    }
-    options{
-        skipDefaultCheckout(true)
+        string default value:'qwertyyyyy', name:'value'
     }
     stages{
         stage('build'){
@@ -21,8 +18,7 @@ pipeline{
         }
         stage('test'){
             steps{
-                echo "this is test stage"
-                
+                echo "this is test stage $params.value"
              
                 
             }
