@@ -12,7 +12,7 @@ pipeline{
 
     }
     options{
-        skipDefaultcheckout(true)
+        skipDefaultCheckout(true)
     }
 
     stages{
