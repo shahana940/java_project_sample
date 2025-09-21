@@ -29,11 +29,12 @@ pipeline{
                 label 'node2'
             }
             steps{
-                sh 'mkdir -p unstash'
+                sh 'rm -rf unstash &&mkdir unstash'
                 dir('unstash/'){
                     unstash 'app-artifact'
              
                 }
+                echo "this is test stage $params.value"
             }
         }
 
@@ -44,7 +45,25 @@ pipeline{
         }  
        
       
-    
+        stage('parallel'){
+            parallel{
+                stage('testA'){
+                    steps{
+                        echo 'test A parallel'
+                    }
+                }
+                stage('testB'){
+                    steps{
+                        echo 'test A parallel'
+                    }
+                }
+                stage('testc'){
+                    steps{
+                        echo 'test A parallel'
+                    }
+                }
+            }
+        }
        
 
     }
