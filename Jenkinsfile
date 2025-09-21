@@ -15,21 +15,27 @@ pipeline{
         stage('build'){
             steps{
                 sh 'mvn clean package'
-                
+                stash includes:'target/* .war',name
+                :'app-artifact'
                 
             }
         }
         stage('test'){
+            agent{
+                label 'node2'
+            }
             steps{
-                echo "this is test stage $params.value"
+                sh 'mkdir unstash'
+                dir('unstash/'){
+                    unstash 'app-artifact'
              
-                
+                }
             }
         }
 
         stage('deploy') {
             steps{
-                echo "this is deploy stage"
+                echo "this is deploy stage $params.choice"
             }
         }  
        
