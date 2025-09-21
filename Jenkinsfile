@@ -48,7 +48,7 @@ pipeline{
              }
             steps{
                 echo "this is deployy stage $params.choice"
-                sh 'rm -rf unstash & mkdir unsttash'
+                sh 'rm -rf unstash & mkdir unstash'
                 dir('unstash'){
                     unstash 'app_artifact'
                 }
