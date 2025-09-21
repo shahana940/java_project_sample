@@ -15,8 +15,7 @@ pipeline{
         stage('build'){
             steps{
                 sh 'mvn clean package'
-                stash includes:'target/* .war',name
-                :'app-artifact'
+                stash includes:'target/*.war',name:'app-artifact'
                 
             }
         }
