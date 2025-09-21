@@ -11,9 +11,14 @@ pipeline{
 
 
     }
+    options{
+        skipDefaultcheckout(true)
+    }
+
     stages{
         stage('build'){
             steps{
+                checkout scm
                 sh 'mvn clean package'
                 stash includes:'target/*.war',name:'app-artifact'
                 
