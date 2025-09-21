@@ -29,7 +29,7 @@ pipeline{
                 label 'node2'
             }
             steps{
-                sh 'mkdir unstash'
+                sh 'mkdir -p unstash'
                 dir('unstash/'){
                     unstash 'app-artifact'
              
