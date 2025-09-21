@@ -39,32 +39,24 @@ pipeline{
         }
 
         stage('deploy') {
+            when{
+                expression{
+                    params.choice == 'prod'}}
+
+            agent{
+                label 'node2'
+             }
             steps{
                 echo "this is deploy stage $params.choice"
-            }
-        }  
-       
-      
-        stage('parallel'){
-            parallel{
-                stage('testA'){
-                    steps{
-                        echo 'test A parallel'
-                    }
+                sh 'rm -rf unstash & mkdir unstash'
+                dir('unstash'){
+                    unstash 'app_artifact'
                 }
-                stage('testB'){
-                    steps{
-                        echo 'test A parallel'
-                    }
-                }
-                stage('testc'){
-                    steps{
-                        echo 'test A parallel'
-                    }
-                }
+                timeout(time:5,unit:'DAYS')
+                input message:'approve deployment in production'
+                sh "echo hello> deployment"
             }
         }
-       
 
     }
 }
